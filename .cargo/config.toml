@@ -1,0 +1,11 @@
+[target.'cfg(all(target_arch = "arm", target_os = "none"))']
+rustflags = [
+  "-C", "link-arg=--nmagic",
+  "-C", "link-arg=-Tlink.x",
+  "-C", "link-arg=-Tmemory.x",
+  "-C", "force-frame-pointers=no",
+]
+runner = "target-gen test template.yaml target/definition.yaml"
+
+[build]
+target = "thumbv7m-none-eabi"

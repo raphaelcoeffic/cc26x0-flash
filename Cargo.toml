@@ -1,0 +1,28 @@
+[package]
+name = "cc26x0-flash"
+version = "0.1.0"
+edition = "2021"
+repository = "https://github.com/raphaelcoeffic/cc26x0-flash"
+license = "MIT OR Apache-2.0"
+description = "probe-rs flash algorithm for the TI CC26x0 (CC2640, CC2650)"
+
+[dependencies]
+cortex-m = { version = "0.7.7", features = ["critical-section-single-core"] }
+flash-algorithm = { version = "0.7.0", default-features = false, features = ["erase-chip", "panic-handler"] }
+
+[[bin]]
+name = "cc26x0-flash"
+test = false
+bench = false
+
+[profile.dev]
+codegen-units = 1
+debug = 2
+incremental = false
+opt-level = 's'
+
+[profile.release]
+codegen-units = 1
+debug = 2
+lto = "fat"
+opt-level = 's'
